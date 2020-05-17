@@ -1,3 +1,3 @@
 # hunters_stuff
 
-Random projects that I've worked on and created. Enjoy!
+Random projects that I have worked on. Enjoy!
