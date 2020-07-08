@@ -1,3 +1,3 @@
-# hunters_stuff
+# Hunter's Stuff
 
-Random projects that I have worked on. Enjoy!
+Miscellaneous projects and code that I have worked on. Enjoy!
