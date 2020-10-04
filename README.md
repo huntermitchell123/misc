@@ -1,3 +1,3 @@
-# Miscellaneous
+# Miscellaneous Code Samples
 
-Random projects and coding samples that I have done. Enjoy!
+Random projects and assignments that I have done throughout the years.
