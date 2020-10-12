@@ -1,0 +1,9 @@
+﻿  main.c
+c:\users\hunter mitchell\documents\visual studio 2015\projects\pa4\pa4\main.c(26): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+c:\users\hunter mitchell\documents\visual studio 2015\projects\pa4\pa4\main.c(71): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+c:\users\hunter mitchell\documents\visual studio 2015\projects\pa4\pa4\main.c(121): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1270): note: see declaration of 'scanf'
+  PA4.vcxproj -> C:\Users\Hunter Mitchell\documents\visual studio 2015\Projects\PA4\Debug\PA4.exe
+  PA4.vcxproj -> C:\Users\Hunter Mitchell\documents\visual studio 2015\Projects\PA4\Debug\PA4.pdb (Full PDB)
