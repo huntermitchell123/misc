@@ -12,6 +12,10 @@ From my computer science class, this program simulates the popular casino game C
 
 For my capstone project, I created a bus route optimization model based on conversations with people at Spokane Transit Authority. It was very exciting to work on something that could be of importance to such a large company. The model is tested with three various examples of different sizes using MATLAB. 
 
+**Math Game Executable** 
+
+I wanted to play around with the curses library in Python, so I created a fun little math game to test your arithmetic. I then bundled it with pyinstaller so that anyone can run the game on their device!
+
 **Hydrologic Event Poster**
 
 With a team, we analyzed decades of data from the Nez Perce National Forest to identify hydrologic events (i.e. forest fires, floods, etc.) We ended up creating features vectors and implementing a support vector machine model.
