@@ -53,13 +53,12 @@ def compareImages(path1,path2):
     """
     img1 = cv2.imread(path1)
     img2 = cv2.imread(path2)
-    try:
-        (score, diff) = compare_ssim(img1, img2, full=True, multichannel=True)
-        diff = (diff * 255).astype("uint8")
-        print("SSIM: {}".format(score))
-        return score
-    except:
-        return 0.0
+
+    (score, diff) = compare_ssim(img1, img2, full=True, multichannel=True)
+    diff = (diff * 255).astype("uint8")
+    print("SSIM: {}".format(score))
+    return score
+
 
 
 
@@ -157,17 +156,17 @@ def persist_image(count,path_list,folder_path:str,url:str):
     url: URL of image to download
     """
     try:
-        image_content = requests.get(url).content
+        img = requests.get(url, timeout=5.0)
 
     except Exception as e:
         print(f"ERROR - Could not download {url} - {e}")
 
     try:
-        image_file = io.BytesIO(image_content)
+        image_file = io.BytesIO(img.content)
 
         image = Image.open(image_file).convert('RGB')
 
-        file_path = os.path.join(folder_path,hashlib.sha1(image_content).hexdigest()[:10] + '.jpg')
+        file_path = os.path.join(folder_path,hashlib.sha1(img.content).hexdigest()[:10] + '.jpg')
         with open(file_path, 'wb') as f:
             image.save(f, "JPEG", quality=85)
         print(f"SUCCESS - saved {url} - as {file_path}")
@@ -195,26 +194,31 @@ def main():
     # get list of image urls to download
     res = fetch_image_urls(SEARCH_TERM, NUMBER_OF_IMAGES, wd=wd, sleep_between_interactions=0.25)
     
+    
     # download each of them
     count = 0
     for elem in res:
         persist_image(count,file_paths,target_folder,elem)
         count += 1
 
+
     # go through each image, calculates structural similarity and keeps top one
     top_image_score = 0.0
     top_path = ''
     for path in file_paths:
-        resizeImage(path)
-        temp = compareImages(MY_IMAGE_PATH,path)
-        if (temp > top_image_score):
-            top_image_score = temp
-            top_path = path
+        if path != '':
+            resizeImage(path)
+            temp = compareImages(MY_IMAGE_PATH,path)
+            if (temp > top_image_score):
+                top_image_score = temp
+                top_path = path
+
 
     # delete all the other images
     for path in file_paths:
         if path != top_path:
             os.remove(path)
+
 
     # prints and shows original image and most similar image
     print(f"Top image path: {top_path} with score of: {top_image_score}")
@@ -222,6 +226,7 @@ def main():
     final_image.show()
     my_image = Image.open(MY_IMAGE_PATH,mode='r')
     my_image.show()
+
 
     wd.quit()
 
