@@ -32,10 +32,10 @@ import hashlib
 # FILL OUT SPECIFICATIONS HERE  #
 #-------------------------------#
 DRIVER_PATH = '/Users/huntermitchell/Documents/PYTHON_FILES/chromedriver' # chromedriver executable path
-MY_IMAGE_PATH = '/Users/huntermitchell/Desktop/HunterPix/bandanaCut.jpg' # path to image you want to compare (Note: This image will be resized)
-SEARCH_TERM = 'actor' # google search term you want to find images based on
-NUMBER_OF_IMAGES = 100 # how many images to get
-TARGET_PATH = '/Users/huntermitchell/Documents/PYTHON_FILES/compareYourself' # location to store final image
+MY_IMAGE_PATH = '/Users/huntermitchell/Desktop/HunterPix/hunterVaping.jpeg' # path to image you want to compare (Note: This image will be resized)
+SEARCH_TERM = 'dog' # google search term you want to find images based on
+NUMBER_OF_IMAGES = 300 # how many images to get
+TARGET_PATH = '/Users/huntermitchell/Documents/PYTHON_FILES/compareYourself' # location to store final image folder
 
 
 
@@ -67,7 +67,7 @@ def resizeImage(path):
     Resizes image to 200x200 pixels
 
     Parameters:
-    path: filepath to image location
+    path - filepath to image location
     """
     temp_pic = Image.open(path,mode='r')
     temp_pic = temp_pic.resize((200,200))
@@ -131,8 +131,7 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep_betw
                 break
         else:
             print("Found:", len(image_urls), "image links, looking for more ...")
-            time.sleep(30)
-            return
+            time.sleep(5)
             load_more_button = wd.find_element_by_css_selector(".mye4qd")
             if load_more_button:
                 wd.execute_script("document.querySelector('.mye4qd').click();")
@@ -192,9 +191,9 @@ def main():
         os.makedirs(target_folder)
     
     # get list of image urls to download
-    res = fetch_image_urls(SEARCH_TERM, NUMBER_OF_IMAGES, wd=wd, sleep_between_interactions=0.25)
+    res = fetch_image_urls(SEARCH_TERM, NUMBER_OF_IMAGES, wd=wd, sleep_between_interactions=0.3)
     
-    
+
     # download each of them
     count = 0
     for elem in res:
