@@ -216,7 +216,7 @@ def main():
 
     # delete all the other images
     for path in file_paths:
-        if path != top_path:
+        if path != top_path and path != '':
             os.remove(path)
 
 
