@@ -34,5 +34,5 @@ On the more mathematical side, this was my final project for Numerical Analysis.
 
 **Compare Yourself Program**
 
-Ever wondered what dog most resembles you? Now you can know! I made a program that goes through google images based on a search input (dog, cat, etc.), and shows the one that looks most structurally similar to you (or any other input image). Note: you must have a couple small things installed for this to run correctly, and also only works on Mac.
+Ever wondered what dog most resembles you? Now you can know! I made a program that goes through google images based on a search input (dog, cat, etc.), and shows the one that looks most structurally similar to you (or any other input image). Note: you must have a couple packages installed for this to work, and also a chromedriver executable downloaded.
 
