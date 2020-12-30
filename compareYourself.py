@@ -32,9 +32,9 @@ import hashlib
 # FILL OUT SPECIFICATIONS HERE  #
 #-------------------------------#
 DRIVER_PATH = '/Users/huntermitchell/Documents/PYTHON_FILES/chromedriver' # chromedriver executable path
-MY_IMAGE_PATH = '/Users/huntermitchell/Desktop/HunterPix/hunterVaping.jpeg' # path to image you want to compare (Note: This image will be resized)
+MY_IMAGE_PATH = '/Users/huntermitchell/Desktop/picture.jpg' # path to image you want to compare (Note: This image will be resized)
 SEARCH_TERM = 'dog' # google search term you want to find images based on
-NUMBER_OF_IMAGES = 300 # how many images to get
+NUMBER_OF_IMAGES = 100 # how many images to get
 TARGET_PATH = '/Users/huntermitchell/Documents/PYTHON_FILES/compareYourself' # location to store final image folder
 
 
@@ -54,8 +54,8 @@ def compareImages(path1,path2):
     img1 = cv2.imread(path1)
     img2 = cv2.imread(path2)
 
-    (score, diff) = compare_ssim(img1, img2, full=True, multichannel=True)
-    diff = (diff * 255).astype("uint8")
+    score = compare_ssim(img1, img2, multichannel=True)
+
     print("SSIM: {}".format(score))
     return score
 
