@@ -1,17 +1,19 @@
 """
 Hunter Mitchell
-12/29/20
+1/2/21
 
 Description: Scrapes images from Google based on a search input, compares each image to an input image on your machine,
 saves the image that is the most structurally similar, and then shows both of them
 
-Packages Required: Pillow, scikit-image, opencv-python, selenium, webdriver-manager
-Note: Must have chromedriver compatible with your chrome version downloaded -> https://chromedriver.chromium.org/downloads
+Notes:
+- Only compatible w/ Python3
+- Packages Required: Pillow, scikit-image, opencv-python, selenium, webdriver-manager
+- Must have a chromedriver compatible with your chrome version downloaded -> https://chromedriver.chromium.org/downloads
 """
 
 
 ### SSIM Testing imports
-from skimage.measure import compare_ssim
+from skimage.metrics import structural_similarity
 from PIL import Image
 import cv2
 
@@ -32,9 +34,9 @@ import hashlib
 # FILL OUT SPECIFICATIONS HERE  #
 #-------------------------------#
 DRIVER_PATH = '/Users/huntermitchell/Documents/PYTHON_FILES/chromedriver' # chromedriver executable path
-MY_IMAGE_PATH = '/Users/huntermitchell/Desktop/picture.jpg' # path to image you want to compare (Note: This image will be resized)
-SEARCH_TERM = 'dog' # google search term you want to find images based on
-NUMBER_OF_IMAGES = 100 # how many images to get
+MY_IMAGE_PATH = '/Users/huntermitchell/Desktop/HunterPix/hunterVaping.jpeg' # path to image you want to compare (Note: This image will be resized)
+SEARCH_TERM = 'house' # google search term you want to find images based on
+NUMBER_OF_IMAGES = 150 # how many images to get
 TARGET_PATH = '/Users/huntermitchell/Documents/PYTHON_FILES/compareYourself' # location to store final image folder
 
 
@@ -54,9 +56,9 @@ def compareImages(path1,path2):
     img1 = cv2.imread(path1)
     img2 = cv2.imread(path2)
 
-    score = compare_ssim(img1, img2, multichannel=True)
+    score = structural_similarity(img1, img2, multichannel=True)
 
-    print("SSIM: {}".format(score))
+    print(f"SSIM: {score}")
     return score
 
 
@@ -75,7 +77,7 @@ def resizeImage(path):
 
 
 
-def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep_between_interactions:float=0.5):
+def fetch_image_urls(query, max_links_to_fetch, wd, sleep_between_interactions=0.5):
     """
     Gets list of image urls to download
     Adapted from https://towardsdatascience.com/image-scraping-with-python-a96feda8af2d
@@ -130,7 +132,7 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep_betw
                 print(f"Found: {len(image_urls)} image links, done!")
                 break
         else:
-            print("Found:", len(image_urls), "image links, looking for more ...")
+            print(f"Found: {len(image_urls)} image links, looking for more...")
             time.sleep(5)
             load_more_button = wd.find_element_by_css_selector(".mye4qd")
             if load_more_button:
@@ -143,7 +145,7 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep_betw
 
 
 
-def persist_image(count,path_list,folder_path:str,url:str):
+def persist_image(count,path_list,folder_path,url):
     """
     Downloads images from image url list into a folder
     Also adapted from https://towardsdatascience.com/image-scraping-with-python-a96feda8af2d 
